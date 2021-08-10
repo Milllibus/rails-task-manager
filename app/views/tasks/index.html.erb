@@ -1,0 +1,17 @@
+<h1>Tasks Manager</h1>
+
+<ol>
+  <% @tasks.each do |task| %>
+    <li><% if task.completed %>
+          <%= icon('fas', 'check-square') %>
+        <% else %>
+          <%= icon('far', 'square') %>
+    <% end %>
+    <%= link_to "#{task.title}", task_path(task.id) %> - <%= link_to icon('fas', 'trash'),
+            task_path(task.id),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %></li>
+  <% end %>
+</ol>
+
+<%= link_to icon('fas', 'plus'), new_task_path %>
